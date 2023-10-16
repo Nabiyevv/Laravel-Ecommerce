@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/',fn() => view('frontend.home',['data'=>"Salam Maqa"]))->name('homeView');
+Route::get('/',fn() => view('frontend.home'))->name('homeView');
 Route::get('/shop',fn() => view('frontend.shop'))->name('shopView');
+Route::get('/cart',fn() => view('frontend.cart'))->name('cartView');
