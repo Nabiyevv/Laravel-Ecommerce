@@ -21,3 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',fn() => view('frontend.home'))->name('homeView');
 Route::get('/shop',fn() => view('frontend.shop'))->name('shopView');
 Route::get('/cart',fn() => view('frontend.cart'))->name('cartView');
+Route::get('/about',fn() => view('frontend.about'))->name('aboutView');
+Route::get('/contact',fn() => view('frontend.contact'))->name('contactView');
+Route::get('/checkout',fn() => view('frontend.checkout'))->name('checkoutView');
