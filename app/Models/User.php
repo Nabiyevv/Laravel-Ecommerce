@@ -66,4 +66,9 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class)->orderBy('created_at', 'desc');
     }
 
+    public function favorites() : HasMany
+    {
+        return $this->hasMany(Favorite::class)->orderBy('created_at', 'desc');
+    }
+
 }
