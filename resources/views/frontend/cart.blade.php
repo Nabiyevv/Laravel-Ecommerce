@@ -133,7 +133,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <button class="btn btn-primary btn-lg btn-block py-3"
-                    onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                    onclick="window.location='{{ route('checkoutView') }}'">Proceed To Checkout</button>
                 </div>
               </div>
             </div>

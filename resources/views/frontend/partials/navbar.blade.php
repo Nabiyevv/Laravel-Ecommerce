@@ -17,8 +17,8 @@
           </li>
         </ul>
       </li>
-      <li class="has-children">
-        <a href="about.html">About</a>
+      <li class="has-children" x-bind:class="{'active':  path == '/about'}">
+        <a href="{{ route('aboutView') }}">About</a>
         <ul class="dropdown">
           <li><a href="#">Menu One</a></li>
           <li><a href="#">Menu Two</a></li>
@@ -28,7 +28,7 @@
       <li x-bind:class="{'active':  path == '/shop'}"><a href="{{ route('shopView') }}">Shop</a></li>
       <li><a href="#">Catalogue</a></li>
       <li><a href="#">New Arrivals</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li x-bind:class="{'active':  path == '/contact'}"><a href="{{ route('contactView') }}">Contact</a></li>
     </ul>
   </div>
 </nav>
