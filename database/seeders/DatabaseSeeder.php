@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
+// use Illuminate\Support\Testing\Fakes\Fake;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +21,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        User::factory()->create([
+            'name' => 'Mahammad',
+            'email' => 'maqa@gmail.com',
+            'password' => 'maqa2003',
+            'avatar' => fake()->text(50),
+            'role' => 'user'
+        ]);
+
     }
 }
