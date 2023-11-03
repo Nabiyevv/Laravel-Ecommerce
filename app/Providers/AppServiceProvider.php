@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        View::composer(['frontend.partials.navbar','frontend.shop'], function ($view) {
+            $controller = new CategoryController();
+            $categories = $controller();
+            $view->with('categories', $categories);
+        });
     }
 }
