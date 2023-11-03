@@ -2,26 +2,35 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, Sluggable;
 
     protected $table='products';
 
     protected $fillable = [
         'name',
         'description',
-        'price',
-        'quantity',
         'image',
-        'size',
         'category_id',
+        'user_id',
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     public function category() : BelongsTo
     {
@@ -46,6 +55,11 @@ class Product extends Model
     public function favorites() : HasMany
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    public function stocks() : HasMany
+    {
+        return $this->hasMany(Stock::class);
     }
     
 }
