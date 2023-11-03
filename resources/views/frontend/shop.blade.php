@@ -10,7 +10,6 @@
         </div>
       </div>
     </div>
-
     <div class="site-section">
       <div class="container">
         <div class="row mb-5">
@@ -49,15 +48,30 @@
               </div>
             </div>
             <div class="row mb-5">
+              @foreach ($products as $product)
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 border text-center">
+                  <figure class="block-4-image">
+                    <a href="{{ route('detailView',$product->slug) }}"><img src="{{ Storage::url($product->image) }}" alt="Image placeholder"
+                        class="img-fluid"></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="{{ route('detailView',$product->slug) }}">{{ $product->name }}</a></h3>
+                    <p class="mb-0">{{ $product->description }}</p>
+                    <p class="text-primary font-weight-bold">$50</p>
+                  </div>
+                </div>
+              </div>
+              @endforeach
 
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_1.jpg" alt="Image placeholder"
+                    <a href="{{ route('detailView',10) }}"><img src="{{ asset('images/cloth_1.jpg') }}" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Tank Top</a></h3>
+                    <h3><a href="{{ route('detailView',10) }}">Tank Top</a></h3>
                     <p class="mb-0">Finding perfect t-shirt</p>
                     <p class="text-primary font-weight-bold">$50</p>
                   </div>
@@ -66,7 +80,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <a href="shop-single.html"><img src="/images/shoe_1.jpg" alt="Image placeholder" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="shop-single.html">Corater</a></h3>
@@ -78,7 +92,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_2.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_2.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -92,7 +106,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_3.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_3.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -105,7 +119,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/shoe_1.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -118,7 +132,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_1.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_1.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -131,7 +145,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/shoe_1.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -144,7 +158,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_2.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_2.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -158,7 +172,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_3.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_3.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -171,7 +185,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/shoe_1.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/shoe_1.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -184,7 +198,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_1.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_1.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -198,7 +212,7 @@
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 border text-center">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/cloth_2.jpg" alt="Image placeholder"
+                    <a href="shop-single.html"><img src="/images/cloth_2.jpg" alt="Image placeholder"
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
@@ -208,8 +222,6 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
             <div class="row" data-aos="fade-up">
               <div class="col-md-12 text-center">
@@ -232,12 +244,14 @@
             <div class="mb-4 rounded border p-4">
               <h3 class="h6 text-uppercase d-block mb-3 text-black">Categories</h3>
               <ul class="list-unstyled mb-0">
-                <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span
-                      class="ml-auto text-black">(2,220)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span
+                @foreach ($categories as $item)
+                <li class="mb-1"><a href="{{ route('shopView',[$item->id,preg_replace(['/[^a-zA-Z0-9]+/', '/&/'], ['-', '-'], $item->name)]) }}" class="d-flex"><span>{{ $item->name }}</span> <span
+                      class="ml-auto text-black">({{  $item->products_count }})</span></a></li>
+                @endforeach
+                {{-- <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span
                       class="ml-auto text-black">(2,550)</span></a></li>
                 <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span
-                      class="ml-auto text-black">(2,124)</span></a></li>
+                      class="ml-auto text-black">(2,124)</span></a></li> --}}
               </ul>
             </div>
 
@@ -301,7 +315,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-lg-0 mb-4" data-aos="fade" data-aos-delay="">
                   <a class="block-2-item" href="#">
                     <figure class="image">
-                      <img src="images/women.jpg" alt="" class="img-fluid">
+                      <img src="/images/women.jpg" alt="" class="img-fluid">
                     </figure>
                     <div class="text">
                       <span class="text-uppercase">Collections</span>
@@ -312,7 +326,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-lg-0 mb-5" data-aos="fade" data-aos-delay="100">
                   <a class="block-2-item" href="#">
                     <figure class="image">
-                      <img src="images/children.jpg" alt="" class="img-fluid">
+                      <img src="/images/children.jpg" alt="" class="img-fluid">
                     </figure>
                     <div class="text">
                       <span class="text-uppercase">Collections</span>
@@ -323,7 +337,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-lg-0 mb-5" data-aos="fade" data-aos-delay="200">
                   <a class="block-2-item" href="#">
                     <figure class="image">
-                      <img src="images/men.jpg" alt="" class="img-fluid">
+                      <img src="/images/men.jpg" alt="" class="img-fluid">
                     </figure>
                     <div class="text">
                       <span class="text-uppercase">Collections</span>
