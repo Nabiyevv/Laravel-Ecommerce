@@ -16,6 +16,21 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        Nova::createUserUsing(function ($command) {
+            return [
+                $command->ask('Name'),
+                $command->ask('Email Address'),
+                $command->secret('Password'),
+                $command->ask('Role ( Company or Admin )'),
+            ];
+        }, function($name, $email, $password, $role){
+            return \App\Models\User::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => bcrypt($password),
+                'role' => $role,
+            ]);
+        });
     }
 
     /**
