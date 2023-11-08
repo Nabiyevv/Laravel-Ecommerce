@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Shop\ProductController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/',fn() => view('frontend.home'))->name('homeView');
-Route::get('/shop/{id}/{slug}',[ProductController::class,'index'])->name('shopView');
+Route::get('/',[HomeController::class,'index'])->name('homeView');
+Route::get('/shop/{id}/{slug}',[ShopController::class,'index'])->name('shopView');
 Route::get('/cart',fn() => view('frontend.cart'))->name('cartView');
 Route::get('/about',fn() => view('frontend.about'))->name('aboutView');
 Route::get('/contact',fn() => view('frontend.contact'))->name('contactView');
