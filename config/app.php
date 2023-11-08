@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RepositoryServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -169,8 +170,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
+        App\Providers\RepositoryServiceProvider::class,
+        
 
+    ])->toArray(),
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
