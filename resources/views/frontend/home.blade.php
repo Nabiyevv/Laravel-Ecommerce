@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-4 mb-lg-0 mb-4" data-aos="fade" data-aos-delay="">
-          <a class="block-2-item" href="#">
+          <a class="block-2-item" href="{{ route('shopView',[1,'Woman']) }}">
             <figure class="image">
               <img src="images/women.jpg" alt="" class="img-fluid">
             </figure>
@@ -22,7 +22,7 @@
           </a>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-4 mb-lg-0 mb-5" data-aos="fade" data-aos-delay="100">
-          <a class="block-2-item" href="#">
+          <a class="block-2-item" href="{{ route('shopView',[3,'Mother-Child']) }}">
             <figure class="image">
               <img src="images/children.jpg" alt="" class="img-fluid">
             </figure>
@@ -33,7 +33,7 @@
           </a>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-4 mb-lg-0 mb-5" data-aos="fade" data-aos-delay="200">
-          <a class="block-2-item" href="#">
+          <a class="block-2-item" href="{{ route('shopView',[2,'Man']) }}">
             <figure class="image">
               <img src="images/men.jpg" alt="" class="img-fluid">
             </figure>
@@ -46,7 +46,6 @@
       </div>
     </div>
   </div>
-
   {{-- Featured Products --}}
   @include('frontend.partials.home.featured')
   <div class="site-section block-8">
