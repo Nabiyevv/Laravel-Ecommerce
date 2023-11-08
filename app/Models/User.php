@@ -24,7 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar',
-        // 'role',
+        'role',
     ];
 
     /**
@@ -45,7 +45,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        // 'role'=>RoleEnum::class,
+        'role'=>RoleEnum::class,
     ];
     public function products() : HasMany
     {
