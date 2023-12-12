@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Shop\ShopController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\UserAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,15 @@ Route::get('/checkout',fn() => view('frontend.checkout'))->name('checkoutView');
 Route::get('/product/{slug}',[ProductController::class,'productDetail'])->name('detailView');
 // Route::get('/product/{slug}',fn() => view('frontend.product-detail'))->name('detailView');
 
+Route::get('/login',fn() => view('frontend.auth.login'))->name('loginView');
+Route::post('/login',[UserAuthController::class,'login'])->name('login');
+
+
+
+
 Route::get('/test',[Controller::class,'index']);
+
+
 
 
 
