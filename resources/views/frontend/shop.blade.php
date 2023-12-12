@@ -56,8 +56,8 @@
                         class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="{{ route('detailView',$product->slug) }}">{{ $product->name }}</a></h3>
-                    <p class="mb-0">{{ $product->description }}</p>
+                    <h3><a href="{{ route('detailView',$product->slug) }}">{{ substr($product->name,0,15) }}...</a></h3>
+                    <p class="mb-0">{{ substr($product->description,0,50) }}...</p>
                     <p class="text-primary font-weight-bold">$50</p>
                   </div>
                 </div>
