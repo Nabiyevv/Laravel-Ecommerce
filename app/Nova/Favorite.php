@@ -3,8 +3,10 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Models\Favorite as FavoriteModel;
 
 class Favorite extends Resource
 {
@@ -41,6 +43,8 @@ class Favorite extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make('Product'),
+            BelongsTo::make('User'),
         ];
     }
 
@@ -86,5 +90,19 @@ class Favorite extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+
+        if ($request->user()->role->value == 'admin')
+            return $query;
+
+        $userId = $request->user()->id;
+        $favorites = $query->whereHas('product', function ($q) use ($userId) {
+            $q->where('products.user_id', $userId);
+        })->get();
+
+        return $favorites;
     }
 }

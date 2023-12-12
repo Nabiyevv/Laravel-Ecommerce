@@ -35,7 +35,7 @@ class Product extends Resource
      * @var array
      */
     public static $search = [
-        'id','name',
+        'id', 'name',
     ];
 
     /**
@@ -51,16 +51,16 @@ class Product extends Resource
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
-                Boolean::make('Is Featured'),
-                Image::make('Image')
+            Boolean::make('Is Featured'),
+            Image::make('Image')
                 ->disk('public')
                 ->path('products')
                 ->indexWidth(100)
                 ->detailWidth(400),
-                BelongsTo::make('Category'),
-                BelongsTo::make('User'),
-                HasMany::make('Stocks'),
-                Text::make('Description'),
+            BelongsTo::make('Category'),
+            BelongsTo::make('User'),
+            HasMany::make('Stocks'),
+            Text::make('Description'),
             // HasMany::make('Reviews'),
             // HasMany::make('Carts'),
             // HasMany::make('Favorite'),
@@ -111,4 +111,12 @@ class Product extends Resource
     {
         return [];
     }
+
+    // public static function indexQuery(NovaRequest $request, $query)
+    // {
+    //     if($request->user()->role->value == 'admin')
+    //         return $query;
+
+    //     return $query->where('user_id', $request->user()->id);
+    // }
 }
