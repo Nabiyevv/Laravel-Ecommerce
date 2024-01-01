@@ -17,7 +17,7 @@
         <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
         <p><strong class="text-primary h4">$50.00</strong></p>
         <div class="mb-1 d-flex">
-          <label for="option-sm" class="d-flex mr-3 mb-3">
+          {{-- <label for="option-sm" class="d-flex mr-3 mb-3">
             <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
           </label>
           <label for="option-md" class="d-flex mr-3 mb-3">
@@ -28,7 +28,12 @@
           </label>
           <label for="option-xl" class="d-flex mr-3 mb-3">
             <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra Large</span>
-          </label>
+          </label> --}}
+          @foreach ($sizes as $size )
+            <label for="option-xl" class="d-flex mr-3 mb-3">
+              <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> {{ $size }}</span>
+            </label>
+          @endforeach
         </div>
         <div class="mb-5">
           <div class="input-group mb-3" style="max-width: 120px;">
