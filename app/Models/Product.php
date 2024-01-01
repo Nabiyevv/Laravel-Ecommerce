@@ -28,9 +28,14 @@ class Product extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'slugname'
             ]
         ];
+    }
+
+    public function getSlugnameAttribute() : string
+    {
+        return substr($this->slug, 0, 30);
     }
 
     public function category() : BelongsTo
