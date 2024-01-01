@@ -9,8 +9,12 @@ class ShopRepository implements ShopRepositoryInterface
 {
 	public function getAllProducts()
     {
-      //  Product::select(['id','name','slug','price','description','image'])->with(['stocks' => fn($query) => $query->select(['id','product_id','sku','image'])->where('is_active',true)])->get();
+      $products =  Product::select(['id','name','slug','description','image'])
+      ->with(['stocks' => fn($query) => $query->select(['id','product_id','sku','images'])
+      ])
+      ->where('is_active',1)
+      ->get();
       
-      return Product::all();
+      return $products;
     }
 }

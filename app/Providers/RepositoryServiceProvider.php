@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
-use App\Interfaces\HomeRepositoryInterface;
-use App\Interfaces\ShopRepositoryInterface;
 use App\Repositories\HomeRepository;
 use App\Repositories\ShopRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\HomeRepositoryInterface;
+use App\Interfaces\ShopRepositoryInterface;
+use App\Interfaces\ProductRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ShopRepositoryInterface::class,
             ShopRepository::class,
+        );
+        $this->app->bind(
+            ProductRepositoryInterface::class,
+            ProductRepository::class,
         );
     }
 
