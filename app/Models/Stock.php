@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Functions\StockFunction;
 use Faker\Core\Uuid;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Stock extends Model
@@ -35,6 +37,12 @@ class Stock extends Model
             }
         });
     }
+    protected function images(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => StockFunction::sendImagesToDb(StockFunction::filterImagesFromHtml($value)),
+        );
+    }
 
     public function product()
     {
@@ -51,19 +59,22 @@ class Stock extends Model
         return $this->belongsTo(ProductColor::class);
     }
 
-// not woking when updating
+    // not woking when updating
     public function generateSku()
     {
         $product_name = Product::select('name')->find($this->product_id);
-        // dd($product_name->name);
-        $product_name = Str::slug($product_name->name, '-');
+
+        $product_name = substr($product_name->name, 0, 25);
+
+        $product_name = Str::slug($product_name, '-');
+
         $color = ProductColor::select('slug')->find($this->product_color_id);
         $size = ProductSize::select('code')->find($this->product_size_id);
         $sku = $product_name . '-' . $color->slug . '-' . strtolower($size->code); // not working this name and code
         // dd($sku);
         // Make sure SKU is unique
         if (Self::where('sku', $sku)->exists()) {
-            $sku = $sku.'-'.uniqid(); // generate random SKU
+            $sku = $sku . '-' . uniqid(); // generate random SKU
         }
         return $sku;
     }

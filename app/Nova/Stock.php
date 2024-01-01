@@ -4,13 +4,18 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Number;
+use App\Functions\StockFunction;
 use Laravel\Nova\Fields\Boolean;
+use Acme\MultiImages\MultiImages;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\MultiSelect;
 use Laravel\Nova\Fields\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Stock extends Resource
@@ -47,17 +52,30 @@ class Stock extends Resource
     public function fields(NovaRequest $request)
     {
         return [
+            // return images as html format
+            Trix::make('Images','images')
+            ->resolveUsing(function ($images) {
+                $parsed = StockFunction::parseImagesToHtml($images);
+                return $parsed;
+            })
+            ->rules('required',function($attribute, $value, $fail) {
+                $images = StockFunction::filterImagesFromHtml($value);
+                if (count($images) == 0)
+                    return $fail(__('You must upload at least 1 image.'));
+                
+                if (count($images) > 5)
+                    return $fail(__('You may only upload up to 5 images.'));
+            })
+            ->withFiles('public')->path('stocks'),
+
             ID::make()->sortable(),
             Text::make(__('SKU'), 'sku')
-            ->withMeta([
-                'extraAttributes' => [
-                    'readonly' => true,
-                ],
-            ]),
+                ->withMeta([
+                    'extraAttributes' => [
+                        'readonly' => true,
+                    ],
+                ]),
             BelongsTo::make('Product'),
-            Image::make(__('Image'), 'image')
-                ->disk('public')
-                ->path('stocks'),
             Number::make(__('Quantity'), 'quantity'),
             Number::make(__('Price'), 'price'),
             Boolean::make(__('In Stock'), 'in_stock'),
@@ -65,12 +83,8 @@ class Stock extends Resource
                 ->readonly(),
             BelongsTo::make('ProductColor'),
             BelongsTo::make('ProductSize'),
-            // ->creationRules('unique:stocks,sku')
-            // ->updateRules('unique:stocks,sku,{{resourceId}}'),
-            // Boolean::make(__('In Stock'), 'in_stock')
         ];
     }
-
     /**
      * Get the cards available for the request.
      *
